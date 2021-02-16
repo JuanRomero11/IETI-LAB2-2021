@@ -11,7 +11,19 @@ import Typography from '@material-ui/core/Typography';
 import './Login.css'
 
 export class Login extends React.Component{
-
+    
+     constructor(props){
+      super(props);
+      localStorage.setItem('username', 'juan.romero@correox.com');
+      localStorage.setItem('password', 'password');
+    }
+     validateData(event){
+      let username = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      if (localStorage.getItem("username") ===  username && localStorage.getItem("password") === password){
+        localStorage.setItem('isLogginIn', 'true');
+      }
+    }
     render(){
         return (
             <React.Fragment>
@@ -42,8 +54,9 @@ export class Login extends React.Component{
                                 variant="contained"
                                 color="primary"
                                 className="submit"
+                                onClick= {() => this.iniciarSesion()}
                             >
-                                Sign in
+                            Sign in
                             </Button>
                         </form>
                     </Paper>
